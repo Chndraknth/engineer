@@ -1,9 +1,8 @@
 from django import forms
-from engineer.database import *
+from engineer.database.models import *
 from django.contrib import admin
 
-form EditParticipantForm(forms.ModelForm):
-
+class EditParticipantForm(forms.ModelForm):
     class Meta:
         model=Participant
 

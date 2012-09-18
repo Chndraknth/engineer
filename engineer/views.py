@@ -10,4 +10,5 @@ def menu(request, slug = ''):
     form = EditParticipantForm(instance = p)
     return render_to_response('menu.html', {'p': p})
 
-
+def index(requet):
+    return render_to_response('layout.html')
