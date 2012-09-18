@@ -1,0 +1,14 @@
+#preview * {
+		margin: auto !important;
+		width: auto;
+		padding-left: 0 !important;
+		background: none !important;
+		color: inherit !important;
+}
+
+#preview {
+		padding: 20px;
+		border: 1px #888 solid;
+		margin-left: 106px;
+		width: 580px;
+}
