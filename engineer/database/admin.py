@@ -31,7 +31,7 @@ class ParticipantForm(forms.ModelForm):
         rounds.choices = allFirstRounds
 
 class ParticipantAdmin(admin.ModelAdmin):
-    """Custom Praticipart Admin
+    """Custom Praticipant Admin
     """
     form = ParticipantForm
 

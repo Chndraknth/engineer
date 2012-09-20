@@ -25,6 +25,7 @@ class Participant(models.Model):
                             max_length = 128, \
                             )
     events = models.ManyToManyField("Round", \
+                                    blank = True, \
                                     )
     def __unicode__(self):
         return self.name

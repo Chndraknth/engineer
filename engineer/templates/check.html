@@ -5,8 +5,13 @@
         <div class="row">
             Welcome, {{p.name}}
         </div>
+        {% for e in events %}
         <div class="row">
-            <a href="/check/{{slug}}">Events</a>
+            {{ e }}
+        </div>
+        {% endfor %}
+        <div class="row">
+            <a href="/add/event_registration/{{slug}}">Add Event</a>
         </div>
     </div>
 </div>

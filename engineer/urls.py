@@ -20,5 +20,8 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
      url(r'^admin/', include(admin.site.urls)),
      url(r'^slug/([a-zA-Z0-9\-]+)$', menu),
+     url(r'^check/([a-zA-Z0-9\-]+)$', check_event_registration),
+     url(r'^add/event_registration/([a-zA-Z0-9\-]+)$', add_event_registration),
      url(r'^$', index),
+
 ) + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
