@@ -2,7 +2,7 @@
 import os.path
 PROJECT_DIR=os.path.dirname(__file__)
 SITE_ROOT=os.path.dirname(os.path.realpath(__file__))
-MEDIA_ROOT = os.path.join(SITE_ROOT, 'static/media') 
+MEDIA_ROOT = os.path.join(SITE_ROOT, 'static/media')
 STATICFILES_DIRS=(
 				os.path.join(SITE_ROOT, 'static'),
 				)
@@ -133,6 +133,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
+    'django_evolution',
     'engineer.database'
 
 )

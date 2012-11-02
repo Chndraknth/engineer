@@ -2,16 +2,22 @@
 from django.core import serializers
 from django.shortcuts import render_to_response, render, get_object_or_404
 from django.core.context_processors import csrf
-from engineer.database.models import * 
+from engineer.database.models import *
 from django.forms.models import model_to_dict
 from django.http import HttpResponseNotFound, HttpResponseRedirect, Http404
+
+
+
 from engineer.forms import *
 
 def menu(request, slug = ''):
     p = get_object_or_404(Participant, slug__iexact = slug)
     return render_to_response('menu.html', {'p': p, 'slug': slug})
 
-def index(requet):
+def register(request):
+
+
+def index(request):
     return render_to_response('layout.html')
 
 def check_event_registration(request, slug=''):
@@ -33,4 +39,4 @@ def add_event_registration(request, slug=''):
         form = AddEventRegistrationForm(instance = p)
         print form.fields['events'].widget
         c['form'] = form
-    return render_to_response('form.html', c) 
+    return render_to_response('form.html', c)
