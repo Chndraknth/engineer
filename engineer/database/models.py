@@ -8,8 +8,6 @@ from django.utils.timezone import utc
 
 class Participant(models.Model):
     """Class that holds the details of each participant.
-    Here, id (P_ID) is generated automatically by django and we can
-    use the same.
     """
     slug = models.CharField("Slug",
                             max_length = 32,

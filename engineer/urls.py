@@ -18,10 +18,14 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-     url(r'^admin/', include(admin.site.urls)),
-     url(r'^slug/([a-zA-Z0-9\-]+)$', menu),
-     url(r'^check/([a-zA-Z0-9\-]+)$', check_event_registration),
-     url(r'^add/event_registration/([a-zA-Z0-9\-]+)$', add_event_registration),
-     url(r'^$', index),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^slug/([a-zA-Z0-9\-]+)$', menu),
+    url(r'^register/([a-zA-Z0-9\-]+)$', register),
+    url(r'^logout$', admin_logout),
+    url(r'^login/admin', admin_login),
+    url(r'^login/fail', login_fail),
+    url(r'^check/([a-zA-Z0-9\-]+)$', check_event_registration),
+    url(r'^register_event/([a-zA-Z0-9\-]+)$', register_event),
+    url(r'^$', index),
 
 ) + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

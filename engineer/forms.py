@@ -22,4 +22,16 @@ class ProgressEventForm(forms.Form):
     def __init__(self, p, e):
         p = get_object_or_404(Participant, slug__iexact = p.slug)
 
+class RegistrationForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(RegistrationForm, self).__init__(*args, **kwargs)
+        self.fields['events'].widget = widgets.CheckboxSelectMultiple(choices=self.fields['events'].widget.choices)
+        self.fields['events'].help_text = 'Select as many events as you wish.'
+    class Meta:
+        model = Participant
+        fields = ('name', 'college_id', 'roll_no', 'email', 'fb_id', 'events')
+
+class AdminLoginForm(forms.Form):
+    username = forms.CharField(label = "username")
+    password = forms.CharField(label = "password", widget = widgets.PasswordInput)
 

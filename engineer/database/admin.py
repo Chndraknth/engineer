@@ -16,7 +16,7 @@ class EventAdmin(admin.ModelAdmin):
             )
 
 class ParticipantForm(forms.ModelForm):
-    """Custom Participant Admin Form 
+    """Custom Participant Admin Form
     """
     def __init__(self, *args, **kwargs):
         """Neat hack to include only first rounds of all events
@@ -37,7 +37,7 @@ class ParticipantAdmin(admin.ModelAdmin):
 
 admin.site.register(
                     (
-                        Round, 
+                        Round,
                         Committee
                     )
                    )
@@ -45,4 +45,5 @@ admin.site.register(
         Event, EventAdmin
         )
 admin.site.register(Participant, ParticipantAdmin)
+admin.site.register(College)
 
