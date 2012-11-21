@@ -1,20 +1,8 @@
 {% extends 'layout.html' %}
 {% block body %}
-<div class="container">
-    <div class="eight columns">
-        <div class="row">
+<div class="row-fluid">
+        <div class="span9">
             Welcome, {{p.name}}
         </div>
-        {% for e in events %}
-        <div class="row">
-            {{ e }}
-        </div>
-        {% endfor %}
-        {% if auth %}
-        <div class="row">
-            <a href="/add/event_registration/{{slug}}">Add Event</a>
-        </div>
-        {% endif %}
-    </div>
 </div>
 {% endblock %}

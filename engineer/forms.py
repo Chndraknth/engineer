@@ -29,9 +29,12 @@ class RegistrationForm(forms.ModelForm):
         self.fields['events'].help_text = 'Select as many events as you wish.'
     class Meta:
         model = Participant
-        fields = ('name', 'college_id', 'roll_no', 'email', 'fb_id', 'events')
+        fields = ('slug', 'name', 'college_id', 'roll_no', 'email', 'fb_id', 'events')
 
 class AdminLoginForm(forms.Form):
     username = forms.CharField(label = "username")
     password = forms.CharField(label = "password", widget = widgets.PasswordInput)
 
+class LoginForm(forms.Form):
+    username = forms.CharField(label = "")
+    next = forms.CharField(label = 'next', widget = widgets.HiddenInput)

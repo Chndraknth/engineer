@@ -1,3 +1,9 @@
+import django.conf.global_settings as DEFAULT_SETTINGS
+TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS+ (
+                                "engineer.processors.events",
+                                "engineer.processors.participant",
+                                "engineer.processors.loginform",
+                                 )
 # Django settings for engineer project.
 import os.path
 PROJECT_DIR=os.path.dirname(__file__)
