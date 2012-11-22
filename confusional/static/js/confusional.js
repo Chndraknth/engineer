@@ -1,6 +1,7 @@
 (function($, undefined){
     $(document).ready(function () {
         $(".list-container.editable tbody tr").each(function() {
+            if ($(this).is(".newform")) return;
             $(this).find('td').attr('contenteditable', 'true');
             var toolbar = $('<span class="btn-group" style="cursor:pointer; position: absolute; right: 6px; top: 4px"> \
                              <a class="btn btn-small"><i class="icon-trash"></i></a></span>');

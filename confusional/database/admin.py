@@ -43,6 +43,43 @@ class ParticipantAdmin(admin.ModelAdmin):
 class CollegeAdminForm(admin.ModelAdmin):
     model = College
 
+class CollegeForm(forms.ModelForm):
+    """Custom Participant Admin Form
+    """
+    class Meta:
+        model=College
+
+class CommitteeForm(forms.ModelForm):
+    """Custom Participant Admin Form
+    """
+    class Meta:
+        model=Committee
+
+class ParticipationForm(forms.ModelForm):
+    """Custom Participant Admin Form
+    """
+    class Meta:
+        model=Participation
+
+
+class EventForm(forms.ModelForm):
+    """Custom Participant Admin Form
+    """
+    class Meta:
+        model=Event
+
+class RoundForm(forms.ModelForm):
+    """Custom Participant Admin Form
+    """
+    class Meta:
+        model=Round
+
+class PrizeForm(forms.ModelForm):
+    """Custom Participant Admin Form
+    """
+    class Meta:
+        model=Prize
+
 admin.site.register(
                     (
                         Round,

@@ -1,4 +1,4 @@
-<div class="list-container {{ list.editable }}">
+<div class="list-container {{ list.editable }}" data-url="{{ list.url }}">
 {% if list.msg %}
 <div class="error msg">
     {{list.msg}}
@@ -23,14 +23,19 @@
             {% endfor %}
         </tr>
         {% endfor %}
+
+        <tr class="newform">
+        <td></td>
+        <form action="{{list.formurl}}" method="POST">
+        {% csrf_token %}
+            {% for field in list.form %}
+            <td>{{field}}</td>
+            {% endfor %}
+        </form>
+        </tr>
     </tbody>
 </table>
 
-<form action="{{list.formurl}}" method="POST">
-    {% csrf_token %}
-{{ list.form.as_p }}
-<input type="submit" class="btn btn-primary" value="Save">
-</form>
 
 <code class="debug-sql">
     {{list.sql}}
