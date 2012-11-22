@@ -1,4 +1,7 @@
 # Django settings for confusional project.
+import django.conf.global_settings as DEFAULT_SETTINGS
+TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + \
+            ("django.contrib.messages.context_processors.messages",)
 import os.path
 PROJECT_DIR=os.path.dirname(__file__)
 SITE_ROOT=os.path.dirname(os.path.realpath(__file__))

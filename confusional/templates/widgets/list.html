@@ -17,7 +17,7 @@
 
     </tr>
         {% for row in list.body %}
-        <tr>
+        <tr data-id="{{row.0}}">
             {% for v in row %}
             <td>{{v}}</td>
             {% endfor %}
