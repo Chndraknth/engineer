@@ -92,4 +92,5 @@ admin.site.register(
 admin.site.register(Participant, ParticipantAdmin)
 admin.site.register(College)
 admin.site.register(Participation)
+admin.site.register(Prize)
 

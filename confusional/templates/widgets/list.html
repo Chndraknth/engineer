@@ -4,7 +4,7 @@
     {{list.msg}}
 </div>
 {% endif %}
-
+<h2>{{list.name}}</h2>
 <table class="table table-hover">
   <thead>
       <tr>
@@ -24,17 +24,44 @@
         </tr>
         {% endfor %}
 
-        <tr class="newform">
-        <td></td>
-        <form action="{{list.formurl}}" method="POST">
-        {% csrf_token %}
-            {% for field in list.form %}
-            <td>{{field}}</td>
-            {% endfor %}
-        </form>
-        </tr>
     </tbody>
+
 </table>
+<style>
+.form {
+    background: #006DCC;
+    color: white;
+    -moz-border-radius: 12pt;
+    -webkit-border-radius: 12pt;
+    padding: 12pt;
+    margin: 0 auto;
+    width: 400px;
+    border-radius: 12pt;
+}
+.form [type=submit] {
+    padding-right: 12pt;
+}
+.form input {
+    width: 95%;
+}
+</style>
+{% if list.form %}
+<div class="container form">
+    <h3>Add a new {{list.name | lower}}</h3>
+    <ul class="newform">
+        {% for e in list.errors %}
+        <li>{{e}}</li>
+        {% endfor %}
+    </ul>
+
+<form action="{{list.url}}" method="POST">
+    {{ list.form.as_table }}
+{% csrf_token %}
+<br>
+    <input type="submit" class="btn btn-large" value="Save">
+</form>
+</div>
+{% endif%}
 
 
 <code class="debug-sql">

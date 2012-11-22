@@ -190,6 +190,9 @@ class Prize(models.Model):
         blank = False,
         default = False
     )
+    def __unicode__(self):
+        return "%s, %s in %s"%(self.p_id, str(self.position), self.e_id)
+
 
 class Participation(models.Model):
     p_id = models.ForeignKey(

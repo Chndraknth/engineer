@@ -4,11 +4,18 @@
     <ul class = "nav nav-pills nav-stacked">
         <li><a href="/participant"> Participants</a></li>
         <li><a href="/event"> Events</a></li>
-        <li><a href="/committee"> Committee</a></li>
         <li><a href="/college"> Colleges</a></li>
         <li><a href="/participation"> Participation</a></li>
         <li><a href="/prize"> Prize</a></li>
     </ul>
 </div>
-
+<div class="span9">
+    <h2>Today's Events</h2>
+    {% include "widgets/list.html" with list=timetable %}
+</div>
+<div class="span3">&nbsp;</div>
+<div class="span9">
+    <h2>Event stats</h2>
+    {% include "widgets/list.html" with list=stats %}
+</div>
 {% endblock %}

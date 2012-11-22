@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{%block body %}
+<h2>{{title}}</h2>
+{% include "widgets/item.html" with list=event %}
+
+<h2>Rounds</h2>
+{% include "widgets/list.html" with list=rounds %}
+
+{% endblock %}
