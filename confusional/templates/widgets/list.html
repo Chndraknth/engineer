@@ -1,0 +1,38 @@
+<div class="list-container {{ list.editable }}">
+{% if list.msg %}
+<div class="error msg">
+    {{list.msg}}
+</div>
+{% endif %}
+
+<table class="table table-hover">
+  <thead>
+      <tr>
+{% for h in list.header %}
+        <th>{{h}}</th>
+{% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+
+    </tr>
+        {% for row in list.body %}
+        <tr>
+            {% for v in row %}
+            <td>{{v}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<form action="{{list.formurl}}" method="POST">
+    {% csrf_token %}
+{{ list.form.as_p }}
+<input type="submit" class="btn btn-primary" value="Save">
+</form>
+
+<code class="debug-sql">
+    {{list.sql}}
+</code>
+</div>

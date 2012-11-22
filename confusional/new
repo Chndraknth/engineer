@@ -1,0 +1,12 @@
+delimiter //
+create procedure p_details(collname varchar(64)) 
+begin
+select p.name as name,e.name as event,pe.score as score
+from database_participant p,database_event e,database_participation pe,database_round r
+where
+e.id=r.event_id and
+pe.r_id_id=r.id and
+pe.p_id_id=p.id and
+p.college_id_id=(select id from database_college where name=collname); 
+end//
+delimiter ;

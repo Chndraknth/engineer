@@ -1,0 +1,16 @@
+<div class="list-container">
+<table class="table table-hover">
+    <tbody>
+    {% for h, v in list.firstrow %}
+    <tr>
+        <td class="field-name"><strong>{{ h }}</strong><td>
+        <td>{{ v }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<code class="debug-sql">
+    {{list.sql}}
+</code>
+</div>
