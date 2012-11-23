@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<div class="navbar navbar-inverse" style="margin-top: 0">
+<div class="navbar navbar-pill" style="margin-top: 0">
     <a class="brand" style="padding: 0pt 30pt" href="/"><img src="/static/img/engilogo.png"></a>
       <ul class="nav">
       <li class="active"><a href="/">Home</a></li>
@@ -22,7 +22,7 @@
       <li><a href="/college">Colleges</a></li>
       <li><a href="/event">Events</a></li>
       <li><a href="/round">Rounds</a></li>
-      <li><a href="/participation">Participations</a></li>
+      <li><a href="/participation">Participation</a></li>
       <li><a href="/prize">Prizes</a></li>
 
     </ul>
@@ -38,6 +38,13 @@
 {%endif%}
 <div class="container-fluid">
     {% block body %}{% endblock %}
+</div>
+
+<div class="sql-console">
+    <div class="inner-relative">
+    <textarea type="text" name="sql" id="sql"></textarea> <button class="btn exec-debug">execute</button>
+    <div class="output"></div>
+</div>
 </div>
 <script src="/static/js/jquery.js"></script>
 <script src="/static/bootstrap/js/bootstrap.min.js"></script>

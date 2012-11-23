@@ -2,3 +2,17 @@
     width: 200px;
     text-align: right;
 }
+
+.sql-console {
+    height: 60px;
+    padding: 10px;
+    background: #e1e1e1;
+}
+
+.sql-console #sql {
+    width: 90%;
+}
+
+.sql-console button {
+    margin: 10px;
+}

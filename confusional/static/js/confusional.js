@@ -34,5 +34,24 @@
             $id.html('<a href="' + url  + i + '">' + i + '</a>');
             $id.attr('contenteditable', 'false');
         });
+
+        $(".copy-console").click(function () {
+            var sql = $(this).prev().text();
+            $(".sql-console #sql").val(sql);
+        });
+        $(".exec-debug").click(function () {
+            var sql = $(".sql-console #sql").val();
+            $.ajax({
+                url: '/college',
+                method: 'POST',
+                data: {action: 'exec', sql: sql},
+                success: function (data) {
+                    $(".sql-console .output").html(data);
+                },
+                error: function (data) {
+                    alert("Error while executing query.")
+                }
+            });
+        });
     });
 })(jQuery);

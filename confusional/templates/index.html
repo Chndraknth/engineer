@@ -9,12 +9,16 @@
         <li><a href="/prize"> Prize</a></li>
     </ul>
 </div>
-<div class="span9">
+<div class="span5">
     <h2>Today's Events</h2>
     {% include "widgets/list.html" with list=timetable %}
 </div>
-<div class="span3">&nbsp;</div>
-<div class="span9">
+<div class="span3">
+    <h2> Recent Actions </h2>
+    {% include "widgets/list.html" with list=recent %}
+</div>
+<div class="span9 offset3">
+    
     <h2>Event stats</h2>
     {% include "widgets/list.html" with list=stats %}
 </div>

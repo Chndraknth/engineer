@@ -94,3 +94,4 @@ admin.site.register(College)
 admin.site.register(Participation)
 admin.site.register(Prize)
 
+admin.site.register(Log)

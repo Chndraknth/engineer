@@ -34,29 +34,42 @@ def handler(m, request, id=None):
         round=RoundForm,
         participation=ParticipationForm,
         committee=CommitteeForm,
-        prize=PrizeForm
+        prize=PrizeForm,
     )
 
-    if request.GET.get('action', None):
-        action = request.GET.get('action')
+    if request.GET.get('action', None) or \
+       request.POST.get('action', None):
+        action = request.GET.get('action', None) or \
+                 request.POST.get('action', None)
         res = False
         if action == 'delete':
             id = request.GET.get('id', None)
             if id:
                 item = cls.objects.get(id=id)
                 res = item.delete()
-        return HttpResponse('')
+            return HttpResponse('')
+        if action == 'exec':
+            cur = connection.cursor()
+            sql = request.GET.get('sql', None)
+            if sql:
+                cur.execute(sql)
+                res = cur.fetchall()
+                cur.close()
+                header = [col[0].title() for col in cur.description]
+                table = tabulate(res, False, header)
+                return render(request, 'widgets/list.html', dict(list=table))
+            
 
     table['url'] = '/%s/' % m
     table['name'] = m.title()
 
     if request.method == 'POST':
-        form = forms[m](request.POST)
+        form = forms[m](request.POST )
         #pdb.set_trace()
-
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.INFO, "Record created!")
+            return HttpResponseRedirect("/%s/"%m)
         else:
             table['form'] = form
             print form.errors.values()
@@ -104,7 +117,7 @@ def tabulate(results, editable=True, fields=None, form=None):
     if not fields:
         fields = results[0]._meta.fields
 
-    if isinstance(fields[0], (str)):
+    if isinstance(fields[0], (str, unicode)):
         table['header'] = fields
         keys = fields
 
@@ -124,7 +137,8 @@ def tabulate(results, editable=True, fields=None, form=None):
     table['range'] = range(0, len(table['header']))
     table['fields'] = keys
     table['firstrow'] = zip(table['header'], table['body'][0])
-    table['sql'] = str(getattr(results, 'query', ''))
+    if editable:
+        table['sql'] = str(getattr(results, 'query', ''))
     table['editable'] = ['', 'editable'][editable]
 
     return table
@@ -138,7 +152,13 @@ def index(request):
         date = '2012-11-22'
     timetable = exec_proc('timetable', [date, venue], [Event._meta.get_field('name'), Round._meta.get_field('venue'), Round._meta.get_field('start_time')])
     stats = exec_proc('event_details', [], ['Name', 'Rounds', 'Participants', 'Average score'])
-
+    recent = tabulate(Log.objects.all()[:10], False)
+    sentences = []
+    for r in recent['body']:
+        _, iden, act, table = r
+        sentences.append(["%s, %s was %s" % (table.title(), iden, act.lower())])
+    recent['header'] = ()
+    recent['body'] = sentences
     return render(request, 'index.html', locals())
 
 college=lambda req, id=None: handler('college', req, id)
@@ -166,4 +186,8 @@ def event(req, id=None):
 round=lambda req, id=None: handler('round', req, id)
 prize=lambda req, id=None: handler('prize', req, id)
 committee=lambda req, id=None: handler('comittee', req, id)
+def log(request, id=None):
+    return render(request, 'list.html', dict(
+        list=tabulate(Log.objects.all())))
+
 

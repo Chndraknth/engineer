@@ -216,3 +216,21 @@ class Participation(models.Model):
     def __unicode__(self):
         return "%s in %s"%(self.p_id, self.r_id)
 
+class Log(models.Model):
+    identifier = models.CharField(
+        "Identifier",
+        max_length=256,
+    )
+
+    action = models.CharField(
+        "Action",
+        max_length = 128,
+    )
+
+    table = models.CharField(
+        "Table",
+        max_length = 128,
+    )
+
+
+

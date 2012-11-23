@@ -63,8 +63,14 @@
 </div>
 {% endif%}
 
+<br>
 
-<code class="debug-sql">
+
+{% if list.sql %}
+<pre class="debug-sql">
     {{list.sql}}
-</code>
+</pre>
+<a class="btn btn-small copy-console pull-right">Copy to console</a>
+{% endif %}
 </div>
+<hr>
