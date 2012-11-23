@@ -20,6 +20,8 @@ urlpatterns = patterns('',
 
     #Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^planner/', planner),
+    url(r'^planner_data/', planner_data),
     url(r'^$', index),
 )
 

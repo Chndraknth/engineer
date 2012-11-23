@@ -1,5 +1,6 @@
 # Create your views here.
 import pdb
+import json
 from django.contrib import messages
 from django.shortcuts import render_to_response, get_object_or_404, render
 # from django.core.context_processors import csrf
@@ -147,19 +148,26 @@ def index(request):
     proc = request.GET.get('action', None)
     date = '2012-11-22'
     venue = ''
-    if proc == 'proc':
-        venue = request.GET.get('venue', '')
-        date = '2012-11-22'
-    timetable = exec_proc('timetable', [date, venue], [Event._meta.get_field('name'), Round._meta.get_field('venue'), Round._meta.get_field('start_time')])
-    stats = exec_proc('event_details', [], ['Name', 'Rounds', 'Participants', 'Average score'])
-    recent = tabulate(Log.objects.all()[:10], False)
-    sentences = []
-    for r in recent['body']:
-        _, iden, act, table = r
-        sentences.append(["%s, %s was %s" % (table.title(), iden, act.lower())])
-    recent['header'] = ()
-    recent['body'] = sentences
+   #if proc == 'proc':
+   #    venue = request.GET.get('venue', '')
+   #    date = '2012-11-22'
+   #timetable = exec_proc('timetable', [date, venue], [Event._meta.get_field('name'), Round._meta.get_field('venue'), Round._meta.get_field('start_time')])
+   #stats = exec_proc('event_details', [], ['Name', 'Rounds', 'Participants', 'Average score'])
+   #recent = tabulate(Log.objects.all()[:10], False)
+   #sentences = []
+   #for r in recent['body']:
+   #    _, iden, act, table = r
+   #    sentences.append(["%s, %s was %s" % (table.title(), iden, act.lower())])
+   #recent['header'] = ()
+   #recent['body'] = sentences
     return render(request, 'index.html', locals())
+
+def planner(request):
+    return render(request, 'planner.html', locals())
+
+def planner_data(request):
+    results = []
+    return HttpResponse(json.dumps(results), content_type='application/json')
 
 college=lambda req, id=None: handler('college', req, id)
 participant=lambda req, id=None: handler('participant', req, id)
